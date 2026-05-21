@@ -2,8 +2,6 @@
 
 A universal agent skill/workflow for safely restructuring codebases into cleaner, more modular, more maintainable architectures without changing intended functionality or degrading UX.
 
-This is not tied to one coding agent. It is written as a portable `SKILL.md` instruction package that can be used by Codex, Claude Code, Cursor-style agents, OpenCode-style agents, or any agent that can load Markdown workflow instructions.
-
 ## Why This Exists
 
 Most architecture cleanup fails in one of two ways:
