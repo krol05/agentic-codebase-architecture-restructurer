@@ -1,5 +1,7 @@
 # Agentic Codebase Architecture Restructurer
 
+[![skills.sh](https://skills.sh/b/krol05/agentic-codebase-architecture-restructurer)](https://skills.sh/krol05/agentic-codebase-architecture-restructurer)
+
 A universal agent skill/workflow for safely restructuring codebases into cleaner, more modular, more maintainable architectures without changing intended functionality or degrading UX.
 
 ## Why This Exists
@@ -63,6 +65,14 @@ agentic-codebase-architecture-restructurer/
 ## Installation
 
 Use the installation location expected by your agent.
+
+### skills.sh
+
+If your agent supports the skills.sh ecosystem, install with:
+
+```bash
+npx skills add krol05/agentic-codebase-architecture-restructurer
+```
 
 ### Codex / OpenAI Skills
 
