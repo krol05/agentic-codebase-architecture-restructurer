@@ -1,8 +1,8 @@
 # Agentic Codebase Architecture Restructurer
 
-A Codex skill for safely restructuring codebases into cleaner, more modular, more maintainable architectures without changing intended functionality or degrading UX.
+A universal agent skill/workflow for safely restructuring codebases into cleaner, more modular, more maintainable architectures without changing intended functionality or degrading UX.
 
-This skill is designed for architecture work where "make it cleaner" is not enough. It forces the agent to understand the product, ask for user context, create restore points, use focused subagents when useful, hunt for bugs, self-grill its plan, preserve user experience, and validate before calling the work done.
+This is not tied to one coding agent. It is written as a portable `SKILL.md` instruction package that can be used by Codex, Claude Code, Cursor-style agents, OpenCode-style agents, or any agent that can load Markdown workflow instructions.
 
 ## Why This Exists
 
@@ -34,10 +34,10 @@ If the user gives partial answers, the skill tells the agent to proceed with exp
 - Front-loads a user briefing before expensive code archaeology
 - Creates restore points before edits
 - Preserves intended functionality and UX polish
-- Uses focused subagents for broad architecture work
+- Uses focused subagents for broad architecture work when the agent supports delegation
 - Hunts current bugs and future architecture-induced bug risks
 - Classifies findings as confirmed bugs, likely bugs, architecture risks, or ambiguous behavior
-- Embeds a self-contained grilling protocol, so no separate `grill-me` skill is required
+- Embeds a self-contained grilling protocol, so no separate grilling skill is required
 - Plans reversible phases instead of broad rewrites
 - Treats performance intelligently, only when critical or requested
 - Verifies with the strongest practical validation available
@@ -53,9 +53,13 @@ agentic-codebase-architecture-restructurer/
         └── openai.yaml
 ```
 
-`SKILL.md` is the main skill file loaded by Codex. `agents/openai.yaml` provides the display metadata used by Codex skill UIs.
+`SKILL.md` is the portable instruction file. `agents/openai.yaml` is optional metadata for OpenAI/Codex-style skill UIs; other agents can ignore it.
 
 ## Installation
+
+Use the installation location expected by your agent.
+
+### Codex / OpenAI Skills
 
 Copy the skill folder into your Codex skills directory:
 
@@ -65,21 +69,25 @@ Copy-Item -Recurse .\agentic-codebase-architecture "$env:USERPROFILE\.codex\skil
 
 Then restart Codex so it discovers the skill.
 
-You can also install it manually by placing this folder at:
+Manual target:
 
 ```text
 ~/.codex/skills/agentic-codebase-architecture/
 ```
 
-## Usage
+### Other Agent Systems
 
-Ask Codex to use:
+Copy the `agentic-codebase-architecture/` folder into the directory your agent scans for skills or reusable instructions. The important file is:
 
 ```text
-$agentic-codebase-architecture
+agentic-codebase-architecture/SKILL.md
 ```
 
-Or select the skill by its display name:
+If your agent does not support skill folders, paste or reference `SKILL.md` as a reusable architecture workflow instruction.
+
+## Usage
+
+Ask your coding agent to use:
 
 ```text
 Agentic Codebase Architecture Restructurer
@@ -100,19 +108,28 @@ Use Agentic Codebase Architecture Restructurer to make this codebase modular, re
 - Do not optimize performance unless it is critical, requested, or clearly on the touched path.
 - Do not do architecture theater: no pointless abstractions, vague dumping grounds, or broad rewrites.
 
+## Agent Compatibility
+
+The workflow is intentionally agent-neutral:
+
+- Subagents are used only when the host agent supports delegation.
+- Restore points adapt to the workspace: git branch/patch/stash/checkpoint where appropriate, file backups otherwise.
+- Validation adapts to the project: typecheck, lint, tests, build, smoke checks, UX checks, and performance checks only when relevant.
+- The embedded grilling protocol does not require any separate skill.
+
 ## Inspired By
 
 The structure follows common Agent Skills conventions used by public skill repositories:
 
 - a discoverable skill folder
 - required `SKILL.md` with YAML frontmatter
-- optional `agents/openai.yaml` metadata
+- optional UI metadata, such as `agents/openai.yaml`
 - concise README with purpose, layout, install, and usage
-- progressive disclosure: the skill body contains the workflow, while Codex loads it only when relevant
+- progressive disclosure: the agent loads the workflow only when relevant
 
 ## Validation
 
-This skill was validated with OpenAI's skill validator:
+The skill package was validated with the OpenAI/Codex skill validator for `SKILL.md` compatibility:
 
 ```text
 Skill is valid!
