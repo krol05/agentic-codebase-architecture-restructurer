@@ -1,0 +1,53 @@
+---
+description: Safe agentic codebase architecture restructuring with user briefing, restore points, UX preservation, bug hunting, and reversible phases.
+alwaysApply: false
+---
+
+# Agentic Codebase Architecture Restructurer
+
+Use this rule when asked to improve codebase architecture, modularity, readability, scalability, testability, bug resistance, or agent navigability without changing intended functionality.
+
+Before deep code exploration, ask the user for a structured project briefing:
+
+- what the product is
+- who uses it
+- workflows that must never break
+- UX smoothness, convenience, polish, and performance expectations
+- target platforms and operating systems
+- known bugs, flaky areas, and scary modules
+- future features and integrations
+- locked dependencies, APIs, data formats, schemas, or compatibility promises
+- validation commands or manual checks that prove nothing broke
+
+If the user gives partial answers, continue with explicit assumptions and be more conservative. Missing answers narrow scope; they do not grant permission to broaden it.
+
+Create a restore point before editing. Preserve intended behavior, UX polish, keyboard/focus behavior, loading states, autosave, shortcuts, import/export behavior, and user trust.
+
+Stop and ask before deleting files, changing public contracts, adding dependencies, changing schemas, or treating ambiguous behavior as a bug.
+
+Use focused subagents only if the environment supports delegation. Otherwise, simulate the same passes sequentially:
+
+- product/domain map
+- UI/UX regression risk
+- storage/data lifecycle
+- AI/search/provider seams
+- tests/build validation
+- duplicate/shallow module scan
+- current bug hunt
+- future bug prevention
+- performance hot paths only when relevant
+
+Self-grill every plan:
+
+- What behavior could change?
+- What UX could regress?
+- Is each issue a confirmed bug, likely bug, architecture risk, or ambiguous behavior?
+- Could the fix remove behavior users rely on?
+- What test or user flow proves intended behavior?
+- What compatibility layer keeps callers safe?
+- What invariant needs one owner?
+- What must not be touched?
+
+Implement conservatively in reversible phases. Do not add features, hide behavior changes inside cleanup, rewrite the app, or optimize unimportant code at the cost of readability.
+
+Before finishing, run the strongest practical validation and report restore point, changed files, behavior/UX preservation notes, validation results, and remaining risks.

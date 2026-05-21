@@ -44,6 +44,13 @@ If the user gives partial answers, the skill tells the agent to proceed with exp
 
 ```text
 agentic-codebase-architecture-restructurer/
+├── .claude/
+│   └── skills/
+│       └── agentic-codebase-architecture/
+│           └── SKILL.md
+├── .cursor/
+│   └── rules/
+│       └── agentic-codebase-architecture-restructurer.mdc
 ├── README.md
 └── agentic-codebase-architecture/
     ├── SKILL.md
@@ -51,7 +58,7 @@ agentic-codebase-architecture-restructurer/
         └── openai.yaml
 ```
 
-`SKILL.md` is the portable instruction file. `agents/openai.yaml` is optional metadata for OpenAI/Codex-style skill UIs; other agents can ignore it.
+`agentic-codebase-architecture/SKILL.md` is the canonical portable instruction file. `.claude/skills/.../SKILL.md` is a Claude Code project-skill copy. `.cursor/rules/...mdc` is a Cursor rule adapter. `agents/openai.yaml` is optional metadata for OpenAI/Codex-style skill UIs; other agents can ignore it.
 
 ## Installation
 
@@ -73,7 +80,31 @@ Manual target:
 ~/.codex/skills/agentic-codebase-architecture/
 ```
 
-### Other Agent Systems
+### Claude Code
+
+Claude Code discovers project skills from:
+
+```text
+.claude/skills/agentic-codebase-architecture/SKILL.md
+```
+
+This repo already includes that path. If you want it as a personal Claude Code skill, copy the folder to:
+
+```text
+~/.claude/skills/agentic-codebase-architecture/
+```
+
+### Cursor
+
+Cursor uses rules rather than native `SKILL.md` loading. This repo includes:
+
+```text
+.cursor/rules/agentic-codebase-architecture-restructurer.mdc
+```
+
+Copy that rule into your project's `.cursor/rules/` directory, or keep the repo structure when adding this workflow to a project.
+
+### Other CLI or IDE Agents
 
 Copy the `agentic-codebase-architecture/` folder into the directory your agent scans for skills or reusable instructions. The important file is:
 
